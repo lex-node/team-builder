@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
+
+    let initialTeamMembers = [
+        {name: "Professor X", power: "telepathy"},
+        {name: "Cyclops", power: "laser eyes"},
+        {name: "Iceman", power: "ice"},
+        {name: "Angel", power: "flying"}
+    ];
+
+
+    const [teamMembers, setTeamMembers] = useState(initialTeamMembers);
+
+    console.log(teamMembers);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <div className="team-list">
+        {
+            teamMembers.map(teamMember => (
+               <div>
+                <h2>{teamMember.name}</h2>
+                <p>Power: {teamMember.power}</p>
+               </div>
+            ))
+        }
+        </div>
     </div>
   );
 }

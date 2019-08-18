@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
+import TeamList from './TeamList';
+import TeamForm from './TeamForm';
 
 function App() {
 
@@ -10,25 +12,20 @@ function App() {
         {name: "Angel", power: "flying"}
     ];
 
-
     const [teamMembers, setTeamMembers] = useState(initialTeamMembers);
 
-    console.log(teamMembers);
+    const addNewTeamMember = teamMember => {
+        setTeamMembers([...teamMembers, teamMember]);
+    };
 
-  return (
-    <div className="App">
-       <div className="team-list">
-        {
-            teamMembers.map(teamMember => (
-               <div>
-                <h2>{teamMember.name}</h2>
-                <p>Power: {teamMember.power}</p>
-               </div>
-            ))
-        }
+    return (
+        <div className="App">
+            <div className="team-list">
+                <TeamForm addNewTeamMember={addNewTeamMember}/>
+                <TeamList teamMembers={teamMembers}/>
+            </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;
